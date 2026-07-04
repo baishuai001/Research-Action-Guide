@@ -1,53 +1,126 @@
-# Research Action Guide
+# Research Action Guide / 课题行动指南
 
-Research Action Guide is a Codex skill for turning literature evidence into an executable research-design plan.
+Research Action Guide is a Codex skill for turning literature evidence into an executable bioinformatics research plan.
 
-It is designed for biomedical and life-science research projects where the goal is not merely to summarize papers, but to decide what to do next: which public datasets to screen, what to include or exclude, how to perform QC and integration, how to define cell identity or biological objects, which downstream analyses are justified, what validation is needed, and what technical roadmap should guide the project.
+它的目标不是整理文献、总结方法、收集工具名，而是从文献细节中理解作者的“选择”：为什么选择这些数据，为什么这样质控和整合，为什么这样定义生物学对象，为什么这些下游分析和验证足以支撑主结论。最终产物是能指导下一轮文献筛选、公共数据筛选、分析设计和验证路线的 **Research Action Guide / 课题行动指南**。
 
-This skill was developed from single-cell, pan-cancer, tumor-immunology, spatial-transcriptomics, and public-data workflow reading, but the core pattern is broader: author choices are treated as evidence. A paper is useful not because it used a popular tool, but because it shows how researchers chose data, quality control, annotation, modeling, validation, and interpretation under a specific scientific pressure.
+## Core Philosophy / 核心思想
 
-## What This Skill Produces
+好的生信技术路线不是把常用分析都跑一遍，而是围绕一个可证伪的生物学判断组织证据。
+
+This skill uses the following evidence-architecture chain:
+
+```text
+biological judgment -> evidence bottleneck -> data boundary -> trusted difference -> object identity -> statistical unit and confounding factor -> downstream validation -> falsifiable conclusion
+```
+
+Author choices are treated as reusable research-design evidence:
+
+| Author choice | What it decides |
+|---|---|
+| Data selection | What question boundary the paper can answer. |
+| QC and integration | Which differences can be trusted as biological signal. |
+| Annotation and object definition | Which biological object later conclusions refer to. |
+| Statistical unit and confounding control | Whether the comparison is interpretable at patient, sample, study, or cell level. |
+| Downstream modules | Which vulnerability in the main claim is tested. |
+| Validation hierarchy | How far the claim can travel beyond the discovery dataset. |
+| Minimum sufficient route | Which modules are essential, optional, or just an analysis full stack. |
+
+## What This Skill Produces / 产物
 
 | Artifact | Purpose |
 |---|---|
-| Literature Corpus Protocol | Defines how papers are searched, screened, enriched, included, excluded, and stopped at saturation. |
-| Paper Decision Audit | Analyzes one paper by asking why the authors made each major data, QC, integration, annotation, downstream-analysis, and validation choice. |
-| Decision Matrix | Compresses audited papers into reusable decision logic for cross-paper comparison. |
-| Cross-Paper Evidence Synthesis | Extracts higher-order rules from multiple papers and judges what the corpus can and cannot support. |
-| Research Action Guide | Final project-level guide with dataset criteria, inclusion/exclusion rules, QC/integration/annotation strategy, downstream modules, validation logic, risks, literature support, and a technical roadmap. |
+| Literature Corpus Protocol | Search, screening, enrichment, inclusion, exclusion, and saturation rules for building the paper corpus. |
+| Paper Decision Audit | One-paper audit focused on why authors made data, QC, integration, annotation, downstream, validation, and statistical-design choices. |
+| Decision Matrix | CSV where each row captures reusable decision-node logic from one evidence-eligible paper. |
+| Cross-Paper Evidence Synthesis | Higher-order synthesis that extracts research-design rules across audited papers. |
+| Research Action Guide | Final project-level guide with dataset criteria, inclusion/exclusion rules, QC/integration/annotation strategy, statistical design, downstream modules, validation logic, risks, literature support, and technical roadmap. |
+| Supervision Report | PASS / REVISE / HOLD quality-control judgment for audits, synthesis, and final guides. |
 
-## What This Skill Is Not
+## Current Workflow / 当前工作流
 
-- It is not a reference-manager workflow.
-- It is not a paper-summary template.
-- It is not a tool-name collection.
-- It is not a generic literature review.
-- It should not generate a final guide from weak or abstract-only evidence.
+1. Capture the final biological question as a synthesis lens.
+2. Build or update the literature corpus.
+3. Audit evidence-eligible papers with `Paper Decision Audit`.
+4. Run the supervision subagent before accepting each audit.
+5. Add passing audits to the `Decision Matrix`.
+6. Run cross-paper evidence synthesis.
+7. Supervise the synthesis.
+8. Generate the final `Research Action Guide`.
+9. Supervise the final guide and run validators.
 
-## Typical Use
+The final guide is not ready unless evidence-eligible papers have audits, audits pass supervision or have explicit HOLD gaps, the matrix captures decision-node logic, synthesis identifies what the corpus can and cannot support, the final guide is actionable, and validators pass.
 
-Example request:
+## Bioinformatics Best-Practice Guards
+
+The skill explicitly checks:
+
+- decision node clarity,
+- direct evidence vs inference,
+- data boundary and data credibility,
+- object identity,
+- statistical unit,
+- patient-level variation,
+- confounding factor risks,
+- validation hierarchy,
+- minimum sufficient route,
+- analysis full stack risk,
+- actionability,
+- life-science academic Chinese / 生命科学学术性.
+
+Chinese output should read like disciplined life-science research reasoning. It should name the biological object, evidence bottleneck, claim strength, inference boundary, and validation requirement. It should avoid slogans, loose praise, decorative language, and machine-translated syntax.
+
+## Supervision Subagent
+
+The supervision subagent is a scientific reasoning auditor, not a copy editor.
+
+It returns:
+
+- `PASS`: the artifact can guide the next research decision.
+- `REVISE`: the artifact is descriptive, generic, unsupported, statistically unsafe, weak in evidence architecture, or not actionable.
+- `HOLD`: source evidence is insufficient, such as abstract-only evidence, missing methods, missing supplement, missing code, or missing dataset metadata.
+
+Supervision checks are defined in:
+
+- `references/supervision_subagent.md`
+- `references/supervision_rubric.md`
+- `references/quality_standards.md`
+
+## Domain Modules / 生信场景模块
+
+The skill includes lightweight modules for common bioinformatics settings:
+
+| Module | File |
+|---|---|
+| Single-cell / single-nucleus RNA-seq | `references/modules/single_cell_rna.md` |
+| Spatial transcriptomics and tissue niche analysis | `references/modules/spatial_transcriptomics.md` |
+| Bulk RNA-seq and pan-cancer public-data analysis | `references/modules/bulk_pan_cancer.md` |
+| Clinical, response, biomarker, and survival analysis | `references/modules/clinical_survival.md` |
+
+These modules do not replace paper-specific reasoning. They help the agent ask the right decision-node questions for each analysis setting.
+
+## Repository Structure
 
 ```text
-I want to screen single-cell / pan-cancer / tumor-immunity / spatial-transcriptomics papers,
-extract workflow-design principles,
-and turn them into a Research Action Guide for my biological question:
-"Does the spatial niche of mregDC determine immunotherapy response,
-and is it functionally remodeled during tumor progression?"
+Research-Action-Guide/
+|-- SKILL.md
+|-- README.md
+|-- agents/
+|-- examples/
+|-- references/
+|   |-- bioinformatics_evidence_architecture.md
+|   |-- bioinformatics_decision_ontology.md
+|   |-- supervision_subagent.md
+|   |-- supervision_rubric.md
+|   |-- modules/
+|   `-- ...
+|-- scripts/
+`-- tests/
 ```
-
-The skill should then:
-
-1. Treat the biological question as a synthesis lens.
-2. Build or update a literature corpus.
-3. Audit evidence-eligible papers at decision-node depth.
-4. Build a Decision Matrix.
-5. Synthesize cross-paper evidence.
-6. Produce an actionable Research Action Guide.
 
 ## Installation
 
-Clone or copy this repository into your Codex skills directory:
+Clone this repository into your Codex skills directory:
 
 ```bash
 git clone https://github.com/baishuai001/Research-Action-Guide.git ~/.codex/skills/research-action-guide
@@ -61,49 +134,39 @@ C:\Users\<your-user-name>\.codex\skills\research-action-guide
 
 ## Validation
 
-Run:
+Run the full test suite:
 
 ```bash
 python -m unittest discover -s tests
-python scripts/init_project.py --project-root ./research_action_guide
-python scripts/validate_project.py --project-root ./research_action_guide
 ```
 
-The final Research Action Guide can be checked with:
+Initialize and validate a project:
 
 ```bash
+python scripts/init_project.py --project-root ./research_action_guide
+python scripts/validate_project.py --project-root ./research_action_guide
+python scripts/check_corpus.py --file ./research_action_guide/literature_corpus.csv
+python scripts/check_matrix.py --file ./research_action_guide/decision_matrix.csv
+python scripts/check_evidence_links.py --project-root ./research_action_guide
+```
+
+Check generated artifacts:
+
+```bash
+python scripts/check_audit.py --file ./research_action_guide/paper_decision_audits/P0001.md
+python scripts/check_supervision_report.py --file ./research_action_guide/supervision/P0001_supervision.md
 python scripts/check_research_action_guide.py --file ./research_action_guide/action_guides/research_action_guide.md
 ```
 
-# 课题行动指南
+Check bundled examples:
 
-Research Action Guide 是一个 Codex skill，用来把文献证据转化为可执行的研究设计方案。
+```bash
+python scripts/check_audit.py --file examples/golden_paper_decision_audit.md
+python scripts/check_supervision_report.py --file examples/golden_supervision_report.md
+python scripts/check_research_action_guide.py --file examples/golden_research_action_guide.md
+```
 
-它适用于生物医学和生命科学研究场景。它的目标不是简单总结文献，而是帮助研究者决定下一步应该怎么做：应该筛选哪些公共数据，哪些数据应该纳入或排除，如何做质控和整合，如何定义细胞身份或生物学对象，哪些下游分析有科学依据，哪些验证是必要的，以及整个课题应该采用怎样的技术路线。
-
-这个 skill 起源于单细胞、泛癌、肿瘤免疫、空间转录组和公共数据分析类文献的 workflow 阅读，但它的核心思想更通用：把作者的“选择”当作证据来理解。一篇文章的价值不在于它用了某个流行工具，而在于它展示了研究者在特定科学压力下，如何选择数据、质控、注释、建模、验证和解释路径。
-
-## 这个 Skill 会生成什么
-
-| 产物 | 作用 |
-|---|---|
-| Literature Corpus Protocol / 文献集合协议 | 规定如何检索、筛选、补全文献信息、纳入、排除，并判断何时达到阶段性饱和。 |
-| Paper Decision Audit / 单篇文献决策审计 | 分析单篇论文中作者为什么这样选择数据、质控、整合、注释、下游分析和验证方式。 |
-| Decision Matrix / 决策矩阵 | 把多篇已审计文献压缩成可横向比较的研究设计逻辑。 |
-| Cross-Paper Evidence Synthesis / 跨文献证据综合 | 从多篇文章中提取更高层次的研究设计规律，并判断当前文献集合能支持什么、不能支持什么。 |
-| Research Action Guide / 课题行动指南 | 最终的项目级行动方案，包括数据筛选标准、纳入排除规则、质控/整合/注释策略、下游分析模块、验证逻辑、风险、文献支持和技术路线图。 |
-
-## 这个 Skill 不是什么
-
-- 不是文献管理器流程。
-- 不是单篇文献摘要模板。
-- 不是工具名称清单。
-- 不是泛泛的综述写作模板。
-- 不能用薄弱证据或只有摘要的文献直接生成最终行动指南。
-
-## 典型使用方式
-
-示例指令：
+## Typical Request
 
 ```text
 我要筛选一批单细胞 / 泛癌 / 肿瘤免疫 / 空间转录组文献，
@@ -115,41 +178,4 @@ mregDC 空间生态位是否决定肿瘤免疫治疗响应，
 并在肿瘤进展中发生功能性重塑？
 ```
 
-skill 应该依次完成：
-
-1. 把生物学问题作为后续综合分析的视角。
-2. 建立或更新文献集合。
-3. 对证据充分的文献进行决策节点级别的单篇审计。
-4. 建立 Decision Matrix。
-5. 进行跨文献证据综合。
-6. 生成可执行的 Research Action Guide / 课题行动指南。
-
-## 安装方式
-
-将本仓库克隆或复制到 Codex skills 目录：
-
-```bash
-git clone https://github.com/baishuai001/Research-Action-Guide.git ~/.codex/skills/research-action-guide
-```
-
-Windows 上通常是：
-
-```text
-C:\Users\<你的用户名>\.codex\skills\research-action-guide
-```
-
-## 验证方式
-
-运行：
-
-```bash
-python -m unittest discover -s tests
-python scripts/init_project.py --project-root ./research_action_guide
-python scripts/validate_project.py --project-root ./research_action_guide
-```
-
-最终生成的课题行动指南可用以下命令检查：
-
-```bash
-python scripts/check_research_action_guide.py --file ./research_action_guide/action_guides/research_action_guide.md
-```
+The skill should then build a literature corpus, audit evidence-eligible papers, supervise outputs, synthesize cross-paper rules, and generate an actionable Research Action Guide.

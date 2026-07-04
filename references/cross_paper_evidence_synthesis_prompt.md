@@ -4,6 +4,8 @@
 
 Turn many Paper Decision Audits into higher-order research-design knowledge. The synthesis is not the final product; it prepares the Research Action Guide.
 
+Synthesize the corpus as a bioinformatics evidence architecture. The goal is to learn research laws from author choices: which decision node recurs, which evidence bottleneck determines the route, which details are transferable, and which details are paper-specific parameters.
+
 ## Required Output
 
 1. Corpus statement:
@@ -33,7 +35,14 @@ Turn many Paper Decision Audits into higher-order research-design knowledge. The
    - what a weaker dataset would lose
 7. QC/integration principles.
 8. Annotation/object-definition principles.
-9. Downstream module principles, grouped by evidence role:
+9. Statistical and confounding-control principles:
+   - statistical unit used for inference
+   - biological replicate or patient-level unit
+   - patient-level variation
+   - common confounding factor patterns
+   - study, platform, cancer-type, treatment, sampling, and metadata bias
+   - comparison design and covariates
+10. Downstream module principles, grouped by evidence role:
    - identity support
    - spatial context
    - progression direction
@@ -41,16 +50,29 @@ Turn many Paper Decision Audits into higher-order research-design knowledge. The
    - mechanism
    - external replication
    - bias control
-10. Biological working model:
+11. Minimum sufficient route:
+    - which modules are essential for the biological judgment
+    - which modules are optional, redundant, or decorative
+    - which papers fell into an analysis full stack pattern
+    - what each essential module changes about claim credibility
+12. Validation hierarchy across the corpus:
+    - internal consistency
+    - external cohort
+    - cross-platform
+    - spatial
+    - perturbational
+    - functional validation
+    - clinical endpoint
+13. Biological working model:
     - clearly separate supported conclusions from hypotheses.
-11. Screening rubric for the next evidence batch:
+14. Screening rubric for the next evidence batch:
     - core inclusion
     - auxiliary inclusion
     - downgrade
     - exclusion
-12. Evidence acquisition plan:
+15. Evidence acquisition plan:
     - next searches as evidence roles, not only query strings.
-13. Readiness judgment:
+16. Readiness judgment:
     - ready for Research Action Guide
     - or which Paper Decision Audits / evidence roles must be added first.
 
@@ -59,3 +81,5 @@ Turn many Paper Decision Audits into higher-order research-design knowledge. The
 Start with the integrated answer, then use tables as evidence support. Tables must have interpretive text before and after them.
 
 Do not produce fragmented lists that force the reader to assemble the conclusion.
+
+Do not flatten the synthesis into a tool catalog. Every cross-paper rule should connect a decision node to a biological judgment, evidence role, failure mode, and practical screening or analysis action.

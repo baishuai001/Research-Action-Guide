@@ -27,7 +27,11 @@ REQUIRED_MATRIX_COLUMNS = {
     "data_selection_logic",
     "qc_integration_logic",
     "annotation_logic",
+    "statistical_unit_logic",
+    "confounding_factor_logic",
     "downstream_selection_logic",
+    "validation_hierarchy",
+    "minimum_sufficient_route",
     "reusable_rule",
     "audit_path",
 }

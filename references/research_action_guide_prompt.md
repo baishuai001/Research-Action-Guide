@@ -4,6 +4,8 @@
 
 Produce the final project-level action guide. This is not a literature review, not a summary, and not a method catalog. It must tell the project what to do next.
 
+Write the guide as a bioinformatics evidence architecture for the user's concrete biological question. Use literature details to extract research laws, then translate those laws into local decisions: what to include, exclude, clean, integrate, annotate, compare, validate, and do next.
+
 ## Required Sections
 
 1. Executive decision:
@@ -15,6 +17,7 @@ Produce the final project-level action guide. This is not a literature review, n
    - supported conclusions
    - hypotheses
    - boundaries of inference
+   - falsifiable biological judgment the route is built around
 3. Dataset screening criteria:
 
 | Criterion | Required / preferred / exclusion | Scientific reason | Literature support | Risk if missing |
@@ -51,19 +54,37 @@ Produce the final project-level action guide. This is not a literature review, n
 | Module | Evidence role | Why needed | Input requirement | Failure mode | Supporting papers |
 |---|---|---|---|---|---|
 
-9. Decision rationale matrix:
+9. Statistical design and confounding-control plan:
+   - statistical unit for each major comparison
+   - biological replicate or patient-level unit
+   - patient-level variation
+   - comparison groups and covariates
+   - main confounding factor risks
+   - study, platform, cancer-type, treatment, sampling, and metadata bias
+   - pseudoreplication or leakage risks
+   - diagnostics and sensitivity analyses
+10. Minimum sufficient route:
+   - essential modules that directly protect the main biological judgment
+   - optional modules that may be useful but are not decision-critical
+   - modules to avoid because they add complexity without changing inference
+   - analysis full stack risks to avoid
+11. Validation hierarchy:
+   - internal consistency needed before interpretation
+   - external cohort or cross-platform validation needed before generalization
+   - spatial, perturbational, functional validation, or clinical endpoint evidence needed before mechanism or translation claims
+12. Decision rationale matrix:
 
 | Project choice | Scientific rationale | Direct evidence | Inference | Assumption | Risk if wrong | Next action |
 |---|---|---|---|---|---|---|
 
-10. Literature support ledger:
+13. Literature support ledger:
 
 | Recommendation | Supporting paper/audit | Evidence location | Direct evidence or inference |
 |---|---|---|---|
 
-11. Technical roadmap:
+14. Technical roadmap:
    - include a Mermaid diagram from dataset screening to validation and decision-ready output.
-12. Immediate action list:
+15. Immediate action list:
    - next searches
    - datasets to prioritize
    - full texts or supplements to retrieve
@@ -76,4 +97,6 @@ Produce the final project-level action guide. This is not a literature review, n
 - Every recommendation must have evidence support or be marked unresolved.
 - Do not hide uncertainty.
 - Do not use generic language as a substitute for decision criteria.
+- Do not recommend a module unless its decision node, evidence role, and failure mode are explicit.
+- Do not confuse parameter detail with philosophical or methodological understanding.
 - If the evidence base is pilot-level, label the guide provisional.
