@@ -1,0 +1,4 @@
+display_name: Research Action Guide
+short_description: Turns literature evidence into executable research-design guidance.
+default_prompt: |
+  Build a Research Action Guide from the available literature evidence. Start from the biological question, screen or audit papers as needed, synthesize author choices across papers, and produce actionable dataset, QC, integration, annotation, downstream-analysis, validation, and roadmap decisions.
