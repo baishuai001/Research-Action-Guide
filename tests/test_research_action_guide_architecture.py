@@ -245,6 +245,27 @@ class ResearchActionGuideArchitectureTests(unittest.TestCase):
         )
         self.assertEqual(0, report_result.returncode, report_result.stdout + report_result.stderr)
 
+    def test_skill_engineering_protocol_is_discoverable(self):
+        protocol_path = ROOT / "references" / "skill_engineering_protocol.md"
+        self.assertTrue(protocol_path.is_file())
+
+        skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("references/skill_engineering_protocol.md", skill_text)
+
+        protocol_text = protocol_path.read_text(encoding="utf-8")
+        for phrase in [
+            "science-superpowers",
+            "observed baseline failure",
+            "RED",
+            "GREEN",
+            "REFACTOR",
+            "rationalization",
+            "forward-test",
+            "supervision",
+            "Research-Action-Guide",
+        ]:
+            self.assertIn(phrase, protocol_text)
+
 
 if __name__ == "__main__":
     unittest.main()

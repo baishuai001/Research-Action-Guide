@@ -86,6 +86,37 @@ Supervision checks are defined in:
 - `references/supervision_rubric.md`
 - `references/quality_standards.md`
 
+## Development Protocol / Skill 工程协议
+
+Research Action Guide uses a `science-superpowers`-inspired engineering protocol for its own development.
+
+The protocol is stored in:
+
+- `references/skill_engineering_protocol.md`
+
+The rule is:
+
+```text
+observed baseline failure -> RED -> GREEN -> REFACTOR -> forward-test -> supervision -> release
+```
+
+In practice, this means every meaningful skill change should be tied to an observed or testable agent failure, such as:
+
+- turning a Paper Decision Audit into a paper summary,
+- producing a tool catalog instead of decision-node logic,
+- auditing abstract-only evidence,
+- ignoring statistical unit or patient-level variation,
+- flattening validation hierarchy,
+- producing fluent but non-academic Chinese.
+
+Before release, changes should be protected by at least one of:
+
+- a failing unit test,
+- a weak/golden example,
+- a validator script,
+- a supervision condition,
+- a forward-test on realistic paper evidence.
+
 ## Domain Modules / 生信场景模块
 
 The skill includes lightweight modules for common bioinformatics settings:

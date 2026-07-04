@@ -118,6 +118,7 @@ Read only the reference needed for the current task:
 - Golden supervision report example: `examples/golden_supervision_report.md`
 - Style and supervision: `references/quality_standards.md`
 - Matrix fields: `references/decision_matrix_schema.md`
+- Skill engineering protocol: `references/skill_engineering_protocol.md`
 
 ## Scripts
 
