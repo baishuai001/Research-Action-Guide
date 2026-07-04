@@ -266,6 +266,24 @@ class ResearchActionGuideArchitectureTests(unittest.TestCase):
         ]:
             self.assertIn(phrase, protocol_text)
 
+    def test_skill_engineering_protocol_defines_tiered_supervision(self):
+        protocol_text = (ROOT / "references" / "skill_engineering_protocol.md").read_text(encoding="utf-8")
+        for phrase in [
+            "Tiered Supervision",
+            "supervision intensity",
+            "future agent reasons, decides, audits, supervises, or writes",
+            "Level 0",
+            "Level 1",
+            "Level 2",
+            "Level 3",
+            "mechanical tests only",
+            "skill-engineering supervisor",
+            "red-team",
+            "multi-role supervision",
+            "No supervision subagent is required",
+        ]:
+            self.assertIn(phrase, protocol_text)
+
 
 if __name__ == "__main__":
     unittest.main()

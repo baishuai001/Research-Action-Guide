@@ -80,6 +80,63 @@ Test whether the skill avoids tool catalogs and includes statistical unit, confo
 
 Forward-test inputs should be raw artifacts: title/abstract, methods excerpt, full text, supplement snippet, code link, or a generated weak audit. The reviewer should not receive your diagnosis unless the test is specifically about supervision.
 
+## Tiered Supervision
+
+Use graded supervision so the process stays rigorous without becoming heavy.
+
+Core rule:
+
+```text
+If a change can alter how a future agent reasons, decides, audits, supervises, or writes, it requires supervision beyond mechanical tests.
+```
+
+The supervision intensity should scale with behavioral impact:
+
+| Level | Change type | Examples | Required supervision |
+|---|---|---|---|
+| Level 0 | Non-behavioral edits | typo fixes, README wording, path clarification, formatting-only changes | mechanical tests only; No supervision subagent is required. |
+| Level 1 | Structural or mechanical changes | new validator script, schema field, example file, project structure, test fixture | tests plus relevant validator scripts; reviewer optional if behavior is unchanged. |
+| Level 2 | Agent behavior changes | edits to `SKILL.md`, audit/synthesis/guide prompts, supervision criteria, domain modules, Chinese academic standards | tests, validators, and skill-engineering supervisor review. |
+| Level 3 | Core philosophy, workflow, or release changes | evidence-architecture changes, PASS/REVISE/HOLD logic, completion rules, major release, broad refactor, multi-file prompt redesign | tests, validators, forward-test, red-team review, and multi-role supervision when useful. |
+
+Use the lowest level that honestly matches the change. Do not escalate small edits into ceremony, but do not downgrade behavior changes to avoid review.
+
+### Trigger Conditions
+
+Escalate to Level 2 when a change affects any of these:
+
+- how a future agent decides whether evidence is sufficient,
+- how a Paper Decision Audit is structured,
+- how the Decision Matrix records reusable logic,
+- how Cross-Paper Evidence Synthesis derives rules,
+- how the final Research Action Guide recommends action,
+- how supervision judges PASS, REVISE, or HOLD,
+- how Chinese life-science academic quality is evaluated.
+
+Escalate to Level 3 when a change affects:
+
+- the governing evidence architecture,
+- the order of the workflow,
+- the meaning of completion,
+- the minimum sufficient route rule,
+- the supervision system itself,
+- a public release or push that changes expected user behavior.
+
+### Supervision Evidence
+
+For Level 2 or Level 3 changes, record:
+
+```text
+Supervision level:
+Why this level:
+Behavior potentially changed:
+RED artifact:
+GREEN change:
+Validators run:
+Forward-test status:
+Supervisor or red-team verdict:
+```
+
 ## Change Placement Rules
 
 Put each change at the right layer:

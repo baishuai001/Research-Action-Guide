@@ -117,6 +117,15 @@ Before release, changes should be protected by at least one of:
 - a supervision condition,
 - a forward-test on realistic paper evidence.
 
+Supervision is tiered:
+
+| Level | Trigger | Required check |
+|---|---|---|
+| Level 0 | Non-behavioral edits such as typos or formatting. | Mechanical tests only. |
+| Level 1 | Structural changes such as schema, examples, or validator scripts. | Tests plus relevant validators. |
+| Level 2 | Agent behavior changes such as prompts, supervision criteria, or domain modules. | Tests, validators, and skill-engineering supervisor review. |
+| Level 3 | Core philosophy, workflow order, completion rules, or release-level changes. | Tests, validators, forward-test, red-team review, and multi-role supervision when useful. |
+
 ## Domain Modules / 生信场景模块
 
 The skill includes lightweight modules for common bioinformatics settings:
